@@ -36,7 +36,7 @@ const ShowWeather = ({
       toast.success("شهر به علاقه مندی ها افزوده شد");
     } else {
       const previouscities = JSON.parse(getfavorite);
-      if (previouscities.length < 7) {
+      if (previouscities.length < 10) {
         const existsity = previouscities.find((cities) => cities === city);
         if (!existsity) {
           previouscities.push(city);

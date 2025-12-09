@@ -77,20 +77,24 @@ const Favorite = ({ setweather, weather }) => {
             </h2>
           </div>
         ) : null}
-        {weather
-          ? weather.map((city, index) => (
-              <ShowWeather
-                key={index}
-                showaddfavorite={false}
-                weather={city.data}
-                sunrise={city.sunrise}
-                sunset={city.sunset}
-                setweather={setweather}
-                allweather={weather}
-                seterror={seterror}
-              />
-            ))
-          : null}
+        {weather ? (
+          weather.map((city, index) => (
+            <ShowWeather
+              key={index}
+              showaddfavorite={false}
+              weather={city.data}
+              sunrise={city.sunrise}
+              sunset={city.sunset}
+              setweather={setweather}
+              allweather={weather}
+              seterror={seterror}
+            />
+          ))
+        ) : error ? null : (
+          <div className="loader-background">
+            <div className="loader"></div>
+          </div>
+        )}
       </div>
     </div>
   );

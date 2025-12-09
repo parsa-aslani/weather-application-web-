@@ -8,8 +8,8 @@
   text-decoration: none;
 }
 :root {
-  --color-primary: rgb(240, 240, 240);
-  --color-secondary: rgb(225, 225, 225);
+  --color-primary: rgb(242, 251, 255);
+  --color-secondary: rgb(226, 233, 238);
 }
 /* home */
 body {
@@ -18,7 +18,7 @@ body {
 }
 .container {
   width: 100vw;
-  background-image: url("./images/beautiful-landscape-with-blue-sky\ \(2\).jpg");
+  background-image: url("./images/mountain-landscape-with-mountains-clouds-background_1120554-22108_LE_upscale_balanced.jpg");
   object-fit: cover;
   background-size: cover;
   background-position: center;
@@ -30,12 +30,13 @@ body {
   align-items: center;
   justify-content: center;
   height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.156), rgba(0, 0, 0, 0.474));
+  background: linear-gradient(rgba(0, 0, 0, 0.156), rgba(0, 0, 0, 0.55));
   padding: 2rem 0;
 }
 .card,
 .error,
-.weather {
+.weather,
+.loader-background {
   width: 330px;
   height: 170px;
   text-align: center;
@@ -44,7 +45,7 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 15px;
-  background-color: rgba(52, 52, 52, 0.101);
+  background-color: rgba(52, 52, 52, 0.3);
   box-shadow: 0px 0px 15px rgba(37, 37, 37, 0.744);
   backdrop-filter: blur(25px);
 }
@@ -104,7 +105,7 @@ body {
 .country-name,
 .deg-icon {
   margin-left: 0.3rem;
-  color: rgb(190, 190, 190);
+  color: rgb(198, 209, 220);
 }
 .main-weather,
 .weather-sunset-sunrise,
@@ -184,7 +185,7 @@ body {
   font-weight: bold;
 }
 .weather-information span {
-  color: rgb(175, 175, 175);
+  color: rgb(190, 190, 190);
   font-weight: 300;
 }
 .weather-information-icon {
@@ -220,6 +221,7 @@ body {
 .add-to-favorite {
   width: auto !important;
   margin: 0.3rem 0;
+  padding: 0.5rem 1.5rem;
 }
 @media screen and (min-width: 768px) {
   .install-button {
@@ -257,6 +259,9 @@ body {
   }
   .feels_like {
     font-size: 1rem;
+  }
+  .add-to-favorite {
+    padding: 0.5rem 2rem;
   }
 }
 /* error */
@@ -320,9 +325,55 @@ body {
 }
 /* favorite */
 .favorite-image {
-  width: 100vw;
-  background-image: url("./images/white-clouds-blue-sky.jpg");
+  background-image: url("images/beautiful-clouds-digital-art.jpg");
+  background-repeat: repeat;
+  background-size: 100vw 150vh;
   background-position: center;
-  background-size: cover;
-  object-fit: cover;
+}
+@media screen and (min-width: 768px) {
+  .favorite-image {
+    background-size: 100vw 250vh;
+  }
+}
+/* loader */
+.loader-background {
+  width: auto !important;
+  height: auto !important;
+  padding: 1.5rem;
+}
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  color: #292f34;
+  background: radial-gradient(
+    farthest-side,
+    currentColor calc(100% - 6px),
+    #0000 calc(100% - 5px) 0
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    #0000 calc(100% - 13px),
+    #000 calc(100% - 12px)
+  );
+  border-radius: 50%;
+  animation: l19 2s infinite linear;
+}
+.loader::before,
+.loader::after {
+  content: "";
+  grid-area: 1/1;
+  background: linear-gradient(currentColor 0 0) center,
+    linear-gradient(currentColor 0 0) center;
+  background-size: 100% 10px, 10px 100%;
+  background-repeat: no-repeat;
+}
+.loader::after {
+  transform: rotate(45deg);
+}
+
+@keyframes l19 {
+  100% {
+    transform: rotate(1turn);
+  }
 }
