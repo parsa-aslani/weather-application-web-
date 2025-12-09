@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "vazir";
+  src: url("../fonts/Vazir.woff2"), url("../fonts/Vazir.woff"),
+    url("../fonts/Vazir.eot");
+}
+body,
+button,
+.Toastify__toast {
+  font-family: "vazir" !important;
+}

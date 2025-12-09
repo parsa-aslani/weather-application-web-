@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "weather aplication",
+  "short_name": "WeatherApp",
+  "description": "search cities weather aplication",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +21,7 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "rgb(23, 30, 36)",
+  "background_color": "#d6e2ed",
+  "lang": "fa-ir"
 }
