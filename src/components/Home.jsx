@@ -6,8 +6,10 @@ import ShowWeather from "./ShowWeather";
 import axios from "axios";
 // react icons
 import { BsEmojiGrin } from "react-icons/bs";
+import { IoSearchSharp } from "react-icons/io5";
 // react router
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 // set jsx
 const Home = () => {
   const API_KEY = "34af916d0ad9927afcf6e984258a2ab2";
@@ -68,6 +70,14 @@ const Home = () => {
       setsunset(null);
     }
   };
+  // check city
+  const checkcity = () => {
+    if (city) {
+      fetch_wether();
+    } else {
+      toast.error("مطفا نام شهر را وارد کنید");
+    }
+  };
   return (
     <div style={{ height: weather ? "auto" : "100vh" }} className="container">
       <div className="search-box">
@@ -79,14 +89,19 @@ const Home = () => {
               شهر های مورد علاقه
             </Link>
           </div>
-          <input
-            type="text"
-            placeholder="نام شهر ..."
-            className="search-city"
-            value={city}
-            onChange={(e) => setcity(e.target.value)}
-            onKeyDown={(e) => (e.key === "Enter" ? fetch_wether() : null)}
-          />
+          <div className="search-input-box">
+            <input
+              type="text"
+              placeholder="نام شهر ..."
+              className="search-city"
+              value={city}
+              onChange={(e) => setcity(e.target.value)}
+              onKeyDown={(e) => (e.key === "Enter" ? checkcity() : null)}
+            />
+            <button className="search-button" onClick={checkcity}>
+              <IoSearchSharp />
+            </button>
+          </div>
         </div>
         {error ? (
           <div className="error">

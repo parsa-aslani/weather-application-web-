@@ -38,7 +38,7 @@ body {
 .weather,
 .loader-background {
   width: 340px;
-  height: 190px;
+  height: 200px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -74,6 +74,11 @@ body {
   font-size: 1.3rem;
   color: var(--color-primary);
 }
+.search-input-box {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+}
 .search-city {
   background-color: transparent;
   width: 90%;
@@ -87,6 +92,24 @@ body {
   border: 2px solid var(--color-secondary);
   box-shadow: 0px 0px 20px rgb(59, 59, 59);
   transition: all 0.3s ease-in-out;
+}
+.search-button {
+  margin-right: 0.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 2px solid var(--color-secondary);
+  color: var(--color-primary);
+  background-color: rgba(60, 60, 60, 0.8);
+  transition: all 0.2s ease-in-out;
+}
+.search-button:hover {
+  border-radius: 100%;
+  background-color: rgba(74, 74, 74, 0.4);
 }
 .search-city::placeholder {
   color: rgb(180, 180, 180);
