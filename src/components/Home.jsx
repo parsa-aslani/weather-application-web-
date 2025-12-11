@@ -10,64 +10,45 @@ import { IoSearchSharp } from "react-icons/io5";
 // react router
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import Loading from "./Loading";
 // set jsx
 const Home = () => {
-  const API_KEY = "34af916d0ad9927afcf6e984258a2ab2";
-  const URL = "https://api.openweathermap.org/data/2.5/weather";
+  const API_KEY = "712148d49a5440f097b181649250712";
+  const URL = "https://api.weatherapi.com/v1/forecast.json";
   // state
   const [city, setcity] = useState("");
   const [weather, setweather] = useState(null);
   const [error, seterror] = useState(null);
-  const [sunrise, setsunrise] = useState(null);
-  const [sunset, setsunset] = useState(null);
+  const [loader, setloader] = useState(false);
   // get data
   const fetch_wether = async () => {
+    setweather(null);
+    seterror(null);
     if (!navigator.onLine) {
       seterror("اینترنتت رو چک کن");
       setcity("");
       setweather(null);
-      setsunrise(null);
-      setsunset(null);
       return;
     }
     seterror(null);
     try {
+      setloader(true);
       const { data } = await axios.get(`${URL}`, {
         params: {
           q: city,
-          units: "metric",
-          appid: API_KEY,
+          key: API_KEY,
+          days: 7,
           lang: "fa",
         },
       });
-
-      const getsunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString(
-        "fa-IR",
-        {
-          hour: "2-digit",
-          minute: "2-digit",
-          timeZone: "Asia/Tehran",
-        }
-      );
-
-      const getsunset = new Date(data.sys.sunset * 1000).toLocaleTimeString(
-        "fa-IR",
-        {
-          hour: "2-digit",
-          minute: "2-digit",
-          timeZone: "Asia/Tehran",
-        }
-      );
-      setsunrise(getsunrise);
-      setsunset(getsunset);
       setweather(data);
       setcity("");
+      setloader(false);
     } catch (err) {
       seterror("شهری که دنبالشی رو پیدا نکردم");
       setcity("");
       setweather(null);
-      setsunrise(null);
-      setsunset(null);
+      setloader(false);
     }
   };
   // check city
@@ -75,7 +56,7 @@ const Home = () => {
     if (city) {
       fetch_wether();
     } else {
-      toast.error("مطفا نام شهر را وارد کنید");
+      toast.error("لطفا نام شهر را وارد کنید");
     }
   };
   return (
@@ -103,7 +84,11 @@ const Home = () => {
             </button>
           </div>
         </div>
-        {error ? (
+        {loader ? (
+          <biv style={{ marginTop: "1.5rem" }}>
+            <Loading />
+          </biv>
+        ) : error ? (
           <div className="error">
             <h2 className="error-text">
               {error} <BsEmojiGrin className="error-icon" />
@@ -111,12 +96,7 @@ const Home = () => {
           </div>
         ) : null}
         {weather ? (
-          <ShowWeather
-            showaddfavorite={true}
-            sunrise={sunrise}
-            sunset={sunset}
-            weather={weather}
-          />
+          <ShowWeather showaddfavorite={true} weather={weather} />
         ) : null}
       </div>
     </div>

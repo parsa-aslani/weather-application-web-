@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 // react icons
 import { BsEmojiGrin } from "react-icons/bs";
 import ShowWeather from "./ShowWeather";
+import Loading from "./Loading";
 const Favorite = ({ setweather, weather }) => {
-  const API_KEY = "34af916d0ad9927afcf6e984258a2ab2";
-  const URL = "https://api.openweathermap.org/data/2.5/weather";
+  const API_KEY = "712148d49a5440f097b181649250712";
+  const URL = "https://api.weatherapi.com/v1/forecast.json";
   const [error, seterror] = useState(null);
   useEffect(() => {
     const getsities = async () => {
@@ -28,30 +29,14 @@ const Favorite = ({ setweather, weather }) => {
             const { data } = await axios.get(URL, {
               params: {
                 q: city,
-                units: "metric",
-                appid: API_KEY,
+                key: API_KEY,
+                days: 7,
                 lang: "fa",
               },
             });
 
             return {
               data,
-              sunrise: new Date(data.sys.sunrise * 1000).toLocaleTimeString(
-                "fa-IR",
-                {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  timeZone: "Asia/Tehran",
-                }
-              ),
-              sunset: new Date(data.sys.sunset * 1000).toLocaleTimeString(
-                "fa-IR",
-                {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  timeZone: "Asia/Tehran",
-                }
-              ),
             };
           })
         );
@@ -83,17 +68,13 @@ const Favorite = ({ setweather, weather }) => {
               key={index}
               showaddfavorite={false}
               weather={city.data}
-              sunrise={city.sunrise}
-              sunset={city.sunset}
               setweather={setweather}
               allweather={weather}
               seterror={seterror}
             />
           ))
         ) : error ? null : (
-          <div className="loader-background">
-            <div className="loader"></div>
-          </div>
+          <Loading />
         )}
       </div>
     </div>

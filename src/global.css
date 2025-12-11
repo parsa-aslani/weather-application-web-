@@ -37,7 +37,7 @@ body {
 .error,
 .weather,
 .loader-background {
-  width: 340px;
+  width: 90vw;
   height: 200px;
   text-align: center;
   display: flex;
@@ -45,7 +45,7 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 15px;
-  background-color: rgba(52, 52, 52, 0.3);
+  background-color: rgba(52, 52, 52, 0.25);
   box-shadow: 0px 0px 15px rgba(37, 37, 37, 0.744);
   backdrop-filter: blur(25px);
 }
@@ -105,7 +105,7 @@ body {
   border: 2px solid var(--color-secondary);
   color: var(--color-primary);
   background-color: rgba(60, 60, 60, 0.8);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .search-button:hover {
   border-radius: 100%;
@@ -123,7 +123,8 @@ body {
 }
 .city-name {
   color: var(--color-primary);
-  font-size: 2.3rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 .country-name,
 .deg-icon {
@@ -132,7 +133,9 @@ body {
 }
 .main-weather,
 .weather-sunset-sunrise,
-.another-data {
+.another-data,
+.hour-weather-box,
+.next-days-weathers {
   margin-top: 1.2rem;
   display: flex;
   justify-content: space-between;
@@ -153,30 +156,41 @@ body {
   align-items: center;
 }
 .feels_like {
-  color: rgb(180, 180, 180);
+  color: rgb(200, 200, 200);
   font-size: 0.8rem;
 }
 .temp {
   display: flex;
   padding: 0.7rem 0rem;
 }
+.min-max-temp {
+  color: rgb(188, 188, 188);
+  margin-bottom: 0.2rem;
+}
+.min-max-temp span {
+  color: white;
+  margin: 0 0.1rem 0 0.2rem;
+}
 .temp-number {
   color: var(--color-primary);
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 .weather-description {
   color: rgb(170, 170, 170);
+  font-size: 0.9rem;
 }
 .weather-img {
   background-color: rgba(74, 74, 74, 0.3);
   border-radius: 10px;
+  width: 90px;
+  padding: 1rem;
 }
 .weather-sunset-sunrise {
   display: flex;
 }
 .sunrise-box,
 .sunset-box {
-  background-color: rgba(74, 74, 74, 0.4);
+  background-color: rgba(41, 41, 41, 0.4);
   padding: 0.3rem 0.7rem;
   border-radius: 5px;
 }
@@ -188,6 +202,7 @@ body {
 .sunrise-time,
 .sunset-time {
   color: var(--color-secondary);
+  font-size: 0.8rem;
 }
 .another-data-box {
   margin: auto;
@@ -246,10 +261,120 @@ body {
   margin: 0.3rem 0;
   padding: 0.5rem 1.5rem;
 }
+.hour-weather-box {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding: 1rem 0.5rem !important;
+}
+.hour-weathers {
+  margin-top: 0.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+  justify-content: flex-start;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior: contain;
+}
+.hour-weathers::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+.hour-data {
+  background-color: rgba(20, 20, 20, 0.4);
+  margin: 0 0.3rem;
+  border-radius: 5px;
+  flex: 0 0 auto;
+  width: 110px;
+  padding: 0.5rem 0.3rem;
+  position: relative;
+}
+.hour-rain {
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+}
+.hour-time {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  color: rgb(180, 180, 180);
+}
+.hour-temp {
+  color: var(--color-primary);
+  margin-bottom: 0.1rem;
+}
+.hour-weathers-title {
+  color: var(--color-primary);
+  padding: 0.7rem 1rem;
+}
+.next-day-informations {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.next-day-informations div p {
+  margin: 0.1rem 0.4rem !important;
+  font-size: 0.9rem;
+}
+.nexts-day {
+  display: flex;
+  background-color: rgba(20, 20, 20, 0.4);
+  width: 95%;
+  justify-content: space-between;
+  padding: 0.3rem 0.5rem;
+  border-radius: 10px;
+  margin: 5px 0;
+}
+.next-days-weathers {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 250px;
+}
+.next-day-date {
+  color: rgb(170, 170, 170);
+  font-size: 0.8rem;
+}
+.next-day-discription {
+  color: var(--color-primary);
+  font-size: 0.8rem;
+}
+.next-day-rainvalue {
+  color: var(--color-secondary);
+}
+.next-day-img {
+  width: 45px;
+}
+@media screen and (min-width: 576px) {
+  .card,
+  .error,
+  .weather {
+    width: 450px;
+  }
+}
 @media screen and (min-width: 768px) {
+  .next-day-img {
+    width: 60px;
+  }
+  .next-day-date {
+    font-size: 0.9rem;
+  }
+  .next-day-discription {
+    font-size: 1rem;
+  }
+  .next-day-informations div p {
+    font-size: 1rem;
+  }
   .install-button {
     border-radius: 10px;
     font-size: 1rem;
+  }
+  .city-name {
+    font-size: 2rem;
   }
   .card,
   .error,
@@ -273,18 +398,34 @@ body {
   }
   .main-weather,
   .weather-sunset-sunrise,
-  .another-data {
+  .another-data,
+  .hour-weather-box,
+  .next-days-weathers {
     width: 70%;
     padding: 1rem 2rem;
   }
   .temp-number {
-    font-size: 4rem;
+    font-size: 3rem;
   }
   .feels_like {
     font-size: 1rem;
   }
   .add-to-favorite {
     padding: 0.5rem 2rem;
+  }
+  .weather-img {
+    width: 110px;
+  }
+  .weather-description {
+    font-size: 1.1rem;
+  }
+  .sunrise-time,
+  .sunset-time {
+    color: var(--color-secondary);
+    font-size: 1rem;
+  }
+  .hour-data {
+    width: 130px;
   }
 }
 /* error */
