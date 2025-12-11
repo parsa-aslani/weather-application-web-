@@ -30,7 +30,7 @@ const Favorite = ({ setweather, weather }) => {
               params: {
                 q: city,
                 key: API_KEY,
-                days: 7,
+                days: 10,
                 lang: "fa",
               },
             });

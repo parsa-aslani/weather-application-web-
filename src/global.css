@@ -267,6 +267,12 @@ body {
   margin: 1rem;
   padding: 1rem 0.5rem !important;
 }
+.next-days-weathers,
+.hour-weathers {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior: contain;
+}
 .hour-weathers {
   margin-top: 0.5rem;
   width: 100%;
@@ -275,11 +281,9 @@ body {
   overflow-x: auto;
   overflow-y: hidden;
   justify-content: flex-start;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  overscroll-behavior: contain;
 }
-.hour-weathers::-webkit-scrollbar {
+.hour-weathers::-webkit-scrollbar,
+.next-days-weathers::-webkit-scrollbar {
   width: 0 !important;
   height: 0 !important;
   background: transparent !important;
